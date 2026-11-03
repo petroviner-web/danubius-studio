@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
-export function Experience() {
+export function Experience({ lang = "sr" }) {
   const [paused, setPaused] = useState(false);
   const [sound, setSound] = useState(false);
   const curtain = useRef();
@@ -151,10 +151,10 @@ export function Experience() {
     <>
       <div className="experience-controls" aria-label="Experience preferences">
         <button onClick={() => setPaused(!paused)} aria-pressed={paused}>
-          {paused ? "Resume motion" : "Pause motion"}
+          {paused ? (lang === 'sr' ? 'Pokreni animacije' : 'Resume motion') : (lang === 'sr' ? 'Pauziraj animacije' : 'Pause motion')}
         </button>
         <button onClick={toggleSound} aria-pressed={sound}>
-          Sound {sound ? "on" : "off"}
+          {lang === 'sr' ? 'Zvuk' : 'Sound'} {sound ? (lang === 'sr' ? 'uključen' : 'on') : (lang === 'sr' ? 'isključen' : 'off')}
         </button>
       </div>
       <div className="page-curtain" ref={curtain} aria-hidden="true">

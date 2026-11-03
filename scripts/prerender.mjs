@@ -3,7 +3,7 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
-import { routes, pageMeta } from "../src/data.js";
+import { routes, pageMeta } from "../src/site-data.js";
 const server = await createServer({
   server: { middlewareMode: true },
   appType: "custom",
@@ -31,7 +31,7 @@ try {
     );
   for (const route of routes) {
     const meta = pageMeta(route);
-    let html = template
+    let html = template.replace('<html lang="en">', `<html lang="${route === '/en' || route.startsWith('/en/') ? 'en' : 'sr'}">`)
       .replace(
         "<!--app-html-->",
         renderToString(React.createElement(App, { path: route })),
