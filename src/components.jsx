@@ -200,7 +200,7 @@ export function Sculpture() {
           p.points.forEach(([x, y], i) =>
             i ? ctx.lineTo(x, y) : ctx.moveTo(x, y),
           );
-          ctx.strokeStyle = `rgba(213,237,149,${0.3 + (1 - p.z) * 0.27})`;
+          ctx.strokeStyle = `rgba(125,205,224,${0.3 + (1 - p.z) * 0.27})`;
           ctx.lineWidth = 1.1;
           ctx.stroke();
         }
