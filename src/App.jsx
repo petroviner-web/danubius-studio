@@ -9,6 +9,7 @@ import {
 } from "./components.jsx";
 import { Experience } from "./Experience.jsx";
 import { services, projects } from "./site-data.js";
+import { GameShowcase } from "./GameShowcase.jsx";
 
 // Crop the supplied artwork at display time; the original logo remains unchanged.
 function BrandLogo({ className = "" }) {
@@ -230,6 +231,7 @@ export function App({ path = "/" }) {
             {t(service.descSr, service.descEn)}
           </p>
         </section>
+        {service.slug === "games" && <GameShowcase en={en} />}
         <section className="section-pad deliverables">
           <Eyebrow>{t("Oblasti podrške", "Areas of support")}</Eyebrow>
           <h2 className="section-title">

@@ -55,3 +55,16 @@ test("the supplied logo and 3D printing details appear in both languages", async
     assert.match(printing, prefix ? /Shipping is paid by the customer/ : /Trošak dostave snosi naručilac/);
   }
 });
+
+test("the game gallery renders all twelve images in both languages", async () => {
+  const files = ["01_heroes.jpg", "02_orc_base.jpg", "03_plunder_market.jpg", "04_battle_day_wide.jpg", "05_battle_day_close.jpg", "06_battle_night_wide.jpg", "07_battle_night_close.jpg", "08_undead_base_dusk.jpg", "09_undead_base_day.jpg", "10_serbian_army.jpg", "11_dragon_fight.jpg", "12_gameplay_hud.jpg"];
+  for (const prefix of ["", "/en"]) {
+    const html = await readFile(`dist${prefix}/services/games/index.html`, "utf8");
+    assert.match(html, /Epoch of/);
+    assert.match(html, /wantonnes/);
+    for (const file of files) {
+      assert.ok(html.includes(`/epoch-of-wantonnes/${file}`), `${prefix}: ${file}`);
+      await access(`dist/epoch-of-wantonnes/${file}`);
+    }
+  }
+});
