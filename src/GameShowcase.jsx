@@ -204,3 +204,103 @@ export function GameShowcase({ en }) {
     </section>
   );
 }
+
+export function FurnaceShowcase({ en }) {
+  const [open, setOpen] = useState(false);
+  const dialog = useRef(null);
+  const trigger = useRef(null);
+  useEffect(() => {
+    if (open && dialog.current && !dialog.current.open)
+      dialog.current.showModal();
+  }, [open]);
+  const close = () => {
+    setOpen(false);
+    if (dialog.current?.open) dialog.current.close();
+    trigger.current?.focus();
+  };
+  const alt = en
+    ? "A collage of scenes from Furnace protocol"
+    : "Kolaž scena iz igre Furnace protocol";
+  return (
+    <section
+      className="game-showcase furnace-showcase"
+      aria-labelledby="furnace-title"
+    >
+      <div className="game-intro">
+        <p className="game-kicker">
+          {en
+            ? "A DANUBIUS STUDIO GAME PROJECT"
+            : "PROJEKAT IGRE · DANUBIUS STUDIO"}
+        </p>
+        <h2 id="furnace-title">
+          Furnace <em>protocol</em>
+        </h2>
+        <p>
+          {en ? "Explore scenes from the game." : "Pogledaj prizore iz igre."}
+        </p>
+      </div>
+      <div className="game-gallery">
+        <figure className="game-shot game-shot-featured">
+          <a
+            href="/furnace-protocol/furnace.jpg"
+            onClick={(event) => {
+              event.preventDefault();
+              trigger.current = event.currentTarget;
+              setOpen(true);
+            }}
+            aria-label={
+              en
+                ? "Enlarge Furnace protocol image"
+                : "Uvećaj sliku igre Furnace protocol"
+            }
+          >
+            <img
+              src="/furnace-protocol/furnace.jpg"
+              alt={alt}
+              width="1920"
+              height="1080"
+              loading="lazy"
+              decoding="async"
+            />
+            <span className="game-shot-overlay" aria-hidden="true">
+              {en ? "VIEW IMAGE" : "POGLEDAJ SLIKU"}
+            </span>
+          </a>
+          <figcaption>{alt}</figcaption>
+        </figure>
+      </div>
+      <dialog
+        className="game-lightbox"
+        ref={dialog}
+        onCancel={(event) => {
+          event.preventDefault();
+          close();
+        }}
+        aria-label={
+          en
+            ? "Furnace protocol image viewer"
+            : "Pregled slike igre Furnace protocol"
+        }
+      >
+        {open && (
+          <div className="game-lightbox-inner">
+            <button
+              type="button"
+              className="game-close"
+              onClick={close}
+              aria-label={en ? "Close image viewer" : "Zatvori pregled slike"}
+            >
+              {en ? "Close" : "Zatvori"} <span aria-hidden="true">×</span>
+            </button>
+            <img
+              src="/furnace-protocol/furnace.jpg"
+              alt={alt}
+              width="1920"
+              height="1080"
+            />
+          </div>
+        )}
+      </dialog>
+    </section>
+  );
+}
