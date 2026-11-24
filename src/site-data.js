@@ -142,12 +142,12 @@ export const projects = [
     category: "Embedded / Prototype",
     color: "#d1b8d5",
     art: "orbit",
-    sr: "Koncept ugrađene termalne kamere zasnovane na PIC32MZ.",
-    en: "An embedded thermal camera concept based on PIC32MZ.",
+    sr: "Studentski prototip termalne kamere sa prikazom temperature na ekranu.",
+    en: "A student thermal camera prototype displaying temperature on a screen.",
     detailSr:
-      "Eksperimentalni firmware prototip sa MLX90640 senzorom. Izvorni C fajlovi još nisu objavljeni u repozitorijumu; hardversko izvršavanje nije nezavisno potvrđeno.",
+      "Timski studentski projekat povezuje MLX90640 termalni senzor, PIC32MZ mikrokontroler i TFT ekran. Dokumentacija opisuje prototip sa osvežavanjem od približno jednog kadra u sekundi.",
     detailEn:
-      "An experimental firmware prototype with an MLX90640 sensor. The original C source is not yet in the repository; hardware operation has not been independently verified.",
+      "This student team project connects an MLX90640 thermal sensor, a PIC32MZ microcontroller and a TFT display. The documentation describes a prototype refreshing at approximately one frame per second.",
   },
 ];
 export const paths = [

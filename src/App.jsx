@@ -10,6 +10,7 @@ import {
 import { Experience } from "./Experience.jsx";
 import { services, projects } from "./site-data.js";
 import { GameShowcase, FurnaceShowcase } from "./GameShowcase.jsx";
+import { ThermalShowcase } from "./ThermalShowcase.jsx";
 
 // Crop the supplied artwork at display time; the original logo remains unchanged.
 function BrandLogo({ className = "" }) {
@@ -365,7 +366,14 @@ export function App({ path = "/" }) {
             </div>
             <div>
               <span className="mono">{t("Izvor", "Source")}</span>
-              <p>GitHub / petroviner-web</p>
+              <p>
+                {project.slug === "thermal-camera"
+                  ? t(
+                      "Projektna dokumentacija / GitHub",
+                      "Project documentation / GitHub",
+                    )
+                  : "GitHub / petroviner-web"}
+              </p>
             </div>
           </div>
         </section>
@@ -383,6 +391,7 @@ export function App({ path = "/" }) {
             </a>
           </div>
         </section>
+        {project.slug === "thermal-camera" && <ThermalShowcase en={en} />}
       </>
     );
   else if (local === "/about")
